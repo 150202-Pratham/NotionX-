@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  # PostgreSQL database with pgvector
+  postgres:
+    image: pgvector/pgvector:pg15-latest
+    environment:
+      POSTGRES_DB: aichatbot
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chatbot-network
+
+  # Ollama service for LLM
+  ollama:
+    image: ollama/ollama:latest
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chatbot-network
+    profiles:
+      - with-ollama
+
+  # ChatBot API service
+  chatbot:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      LOG_LEVEL: info
+      
+      # Ollama Configuration
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: qwen3:0.6b
+      OLLAMA_EMBEDDING_MODEL: nomic-embed-text
+      
+      # PostgreSQL Configuration
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: aichatbot
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      
+      # Features
+      USE_POSTGRES: "true"
+      USE_IN_MEMORY_FALLBACK: "true"
+      ENABLE_CACHING: "true"
+      
+      # API Configuration
+      CORS_ORIGIN: http://localhost:3000,http://localhost:3001
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+    networks:
+      - chatbot-network
+    profiles:
+      - with-ollama
+
+volumes:
+  postgres_data:
+  ollama_data:
+
+networks:
+  chatbot-network:
+    driver: bridge

@@ -1,0 +1,101 @@
+{
+  "timestamp": "2026-06-06T18:12:23.477928",
+  "test_categories": {
+    "connectivity": {
+      "Root Endpoint": {
+        "status": "\u2705",
+        "code": 200,
+        "method": "GET",
+        "url": "http://localhost:4000/",
+        "response_preview": "{\"success\":true,\"message\":\"Your server is up and running....\"}"
+      },
+      "API Base Endpoint": {
+        "status": "\u274c",
+        "code": 404,
+        "method": "GET",
+        "url": "http://localhost:4000/api/v1/",
+        "response_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<"
+      }
+    },
+    "chatbot_endpoints": {
+      "Health Check": {
+        "status": "\u2705",
+        "code": 200,
+        "method": "GET",
+        "url": "http://localhost:4000/api/v1/chatbot/health",
+        "response_preview": "{\"status\":\"degraded\",\"services\":{\"ai\":\"running\",\"database\":\"disconnected\"},\"timestamp\":\"2026-06-06T1"
+      },
+      "Status Check": {
+        "status": "\u2705",
+        "code": 200,
+        "method": "GET",
+        "url": "http://localhost:4000/api/v1/chatbot/status",
+        "response_preview": "{\"success\":true,\"status\":\"operational\",\"error\":\"Failed to retrieve statistics\",\"timestamp\":\"2026-06-"
+      },
+      "Send Message (Simple)": {
+        "status": "\u2705",
+        "code": 200,
+        "method": "POST",
+        "url": "http://localhost:4000/api/v1/chatbot/chat",
+        "response_preview": "{\"success\":true,\"response\":\"The context provided is empty and does not contain any relevant informat"
+      },
+      "Get Conversation History": {
+        "status": "\u2705",
+        "code": 200,
+        "method": "GET",
+        "url": "http://localhost:4000/api/v1/chatbot/history/test-001",
+        "response_preview": "{\"success\":true,\"conversationId\":\"test-001\",\"messages\":[]}"
+      },
+      "Add Document (Single)": {
+        "status": "\u274c",
+        "code": 500,
+        "method": "POST",
+        "url": "http://localhost:4000/api/v1/chatbot/documents",
+        "response_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<"
+      },
+      "Add Batch Documents": {
+        "status": "\u274c",
+        "code": 500,
+        "method": "POST",
+        "url": "http://localhost:4000/api/v1/chatbot/documents/batch",
+        "response_preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<"
+      }
+    },
+    "backend_integration": {
+      "Categories Service": {
+        "status": "\u2705",
+        "code": 200,
+        "method": "GET",
+        "url": "http://localhost:4000/api/v1/course/showAllCategories",
+        "response_preview": "{\"success\":true,\"data\":[{\"_id\":\"507f1f77bcf86cd799439011\",\"name\":\"Web Development\",\"description\":\"Le"
+      },
+      "All Courses Service": {
+        "status": "\u2705",
+        "code": 200,
+        "method": "GET",
+        "url": "http://localhost:4000/api/v1/course/getAllCourses",
+        "response_preview": "{\"success\":true,\"data\":[{\"_id\":\"69e9ca279bc9e236bf3ac94c\",\"courseName\":\"Web Development Masterclass\""
+      },
+      "User Authentication Endpoint": {
+        "status": "\u274c",
+        "code": 403,
+        "method": "POST",
+        "url": "http://localhost:4000/api/v1/auth/signup",
+        "response_preview": "{\"success\":false,\"message\":\"All Fields are required\"}"
+      }
+    },
+    "ai_services": {},
+    "database_services": {}
+  },
+  "summary": {
+    "total_tests": 11,
+    "passed": 7,
+    "failed": 4,
+    "errors": [
+      "API Base Endpoint: HTTP 404",
+      "User Authentication Endpoint: HTTP 403",
+      "Add Document (Single): HTTP 500",
+      "Add Batch Documents: HTTP 500"
+    ]
+  }
+}

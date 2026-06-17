@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-06-06T15:44:17.475103",
+  "services": {
+    "ChatBot Health Check": {
+      "status": "\u2705 PASS",
+      "code": 200
+    },
+    "ChatBot Status": {
+      "status": "\u2705 PASS",
+      "code": 200
+    },
+    "ChatBot Send Message": {
+      "status": "\u274c FAIL",
+      "error": "HTTPConnectionPool(host='localhost', port=4000): Read timed out. (read timeout=5)"
+    },
+    "Get Conversation History": {
+      "status": "\u274c FAIL",
+      "code": 500
+    },
+    "Add Document to Knowledge Base": {
+      "status": "\u274c FAIL",
+      "code": 500
+    },
+    "Backend Server Health": {
+      "status": "\u274c FAIL",
+      "code": 404
+    },
+    "Database Connection (via Categories)": {
+      "status": "\u2705 PASS",
+      "code": 200
+    },
+    "Courses Service": {
+      "status": "\u2705 PASS",
+      "code": 200
+    }
+  },
+  "passed": 4,
+  "failed": 4,
+  "total": 8
+}
