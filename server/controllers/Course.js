@@ -7,7 +7,7 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const CourseProgress = require("../models/CourseProgress")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
 const { getServices } = require("../chatbot/src")
-const { indexCourse } = require("../utils/courseAI");
+const { indexCourse } = require("../utils/courseAi");
 // Function to create a new course
 exports.createCourse = async (req, res) => {
   try {
