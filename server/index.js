@@ -14,7 +14,7 @@ const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
 // ChatBot integration - Use the chatbot module entry point
-const { initializeChatbot } = require("../chatbot");
+const { initializeChatbot } = require("./chatbot");
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;

@@ -1,4 +1,4 @@
-const { getServices } = require("../../chatbot/src/index");
+const { getServices } = require("../chatbot/src/index");
 const Course = require("../models/Course");
 async function indexCourse(courseData) {
   try {

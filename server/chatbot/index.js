@@ -25,14 +25,14 @@ module.exports = {
   checkHealth,
   
   // Service exports (for advanced usage)
-  ChatService: require('./src/services/chatService'),
-  SearchService: require('./src/services/searchService'),
-  AIService: require('./src/services/aiService'),
-  DatabaseService: require('./src/services/databaseService'),
-  CacheService: require('./src/services/cacheService'),
+  ChatService: require('./src/services/chatService.js'),
+  SearchService: require('./src/services/searchService.js'),
+  AIService: require('./src/services/aiService.js'),
+  DatabaseService: require('./src/services/databaseService.js'),
+  CacheService: require('./src/services/cacheService.js'),
   
   // Utilities
-  logger: require('./src/utils/logger'),
-  validation: require('./src/utils/validation'),
-  similarity: require('./src/utils/similarity'),
+  logger: require('./src/utils/logger.js'),
+  validation: require('./src/utils/validation.js'),
+  similarity: require('./src/utils/similarity.js'),
 };

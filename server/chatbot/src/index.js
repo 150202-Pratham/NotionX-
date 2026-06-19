@@ -81,6 +81,16 @@ async function initializeChatbot(app) {
       cacheService,
     };
 
+    const {
+      rebuildCourseKnowledge,
+    } = require("../../../server/utils/courseAi");
+
+    await rebuildCourseKnowledge();
+
+    logger.info(
+      "✅ Course Knowledge Loaded"
+    );
+
     logger.info('✅ ChatBot initialization complete\n');
     return chatbotServices;
   } catch (error) {
