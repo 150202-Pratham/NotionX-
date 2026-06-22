@@ -2,6 +2,8 @@ const nodemailer = require("nodemailer");
 
 const mailSender = async (email, title, body) => {
     try{
+        console.log("MAIL_HOST:", process.env.MAIL_HOST);
+        console.log("MAIL_USER:", process.env.MAIL_USER);
             let transporter = nodemailer.createTransport({
                 host:process.env.MAIL_HOST,
                 port: 465,
