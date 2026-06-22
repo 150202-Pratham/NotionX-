@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const app = express();
 
@@ -11,12 +13,12 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
+
 
 // ChatBot integration - Use the chatbot module entry point
 const { initializeChatbot } = require("./chatbot");
 
-dotenv.config();
+
 const PORT = process.env.PORT || 4000;
 
 //database connect
