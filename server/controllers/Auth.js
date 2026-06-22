@@ -180,6 +180,7 @@ exports.login = async (req, res) => {
 };
 // Send OTP For Email Verification
 exports.sendotp = async (req, res) => {
+	console.log("SEND OTP ROUTE HIT");
 	try {
 		const { email } = req.body;
 
